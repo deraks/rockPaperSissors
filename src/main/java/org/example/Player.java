@@ -21,7 +21,6 @@ public class Player {
     }
 
     public MoveTypes makeMove(){
-        System.out.println("Hello can you enter Rock, Paper or Scissors, please");
 
         String playerMove = scaner.nextLine();
 

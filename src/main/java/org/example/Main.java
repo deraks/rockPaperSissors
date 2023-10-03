@@ -10,27 +10,25 @@ public class Main {
     static Computer computer;
 
     public static void main(String[] args) {
-        startGame();
-
+        System.out.println("Hello, this is a super game ROCK, PAPER, SCISSORS?");
+        System.out.println("Let's gp!");
         player = new Player();
         computer = new Computer();
 
-        MoveTypes playerMove = player.makeMove();
-        MoveTypes computerMove = computer.makeMove();
+        startGame();
 
-        checkMovesIsEqual(playerMove, computerMove);
-
-        startAgain();
     }
 
     public static void startGame(){
-        System.out.println("Hello, this is a super game ROCK, PAPER, SCISSORS?");
-        System.out.println("Let's gp!");
+        MoveTypes playerMove = player.makeMove();
+        MoveTypes computerMove = computer.makeMove();
+        checkMovesIsEqual(playerMove, computerMove);
     }
 
     public static void checkMovesIsEqual(MoveTypes playerMove, MoveTypes computerMove){
         if (playerMove == computerMove){
             drawScore++;
+            System.out.println("It is a draw,Try again!");
 
         }else if(playerMove==MoveTypes.ROCK && computerMove == MoveTypes.SCISSORS){
             sayYouWinner(computerMove);
@@ -47,39 +45,35 @@ public class Main {
         }else if (playerMove == MoveTypes.SCISSORS && computerMove == MoveTypes.PAPER) {
             sayYouWinner(computerMove);
         }
+        startAgain();
     }
 
     public static void sayYouWinner(MoveTypes computerMove){
         System.out.println("Congratulation!!! You are winner!");
-        System.out.print("Computer move is    "+ computerMove);
+        System.out.println("Computer move is    "+ computerMove);
         player.increaseScore();
         computer.dicreaseScore();
     }
 
     public static void sayYouLose(MoveTypes computerMove){
         System.out.println("Sorry!!! You lose!");
-        System.out.print("Computer move is    "+ computerMove);
+        System.out.println("Computer move is    "+ computerMove);
         player.dicreaseScore();
         computer.increaseScore();
-    }
-    public static void endGame(){
-        System.out.println("It was great game.");
-        System.out.println("Let's gp!");
-        GameResult();
     }
 
     public static void GameResult(){
         System.out.println("It was great game.");
-        System.out.print("Your score is   "+ player.getScore());
-        System.out.print("Computer score is   "+ computer.getScore());
-        System.out.print("Draw score is   "+ drawScore);
+        System.out.println("Your score is   "+ player.getScore());
+        System.out.println("Computer score is   "+ computer.getScore());
+        System.out.println("Draw score is   "+ drawScore);
     }
 
     public static void startAgain(){
         if (player.playAgain()){
             startGame();
         }else{
-            endGame();
+            GameResult();
         }
     }
 }
